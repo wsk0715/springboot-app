@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsk0715.central.member.mapper.MemberMapper">
+
+  <!-- Result Mapping -->
+  <resultMap id="MemberResultMap" type="Member">
+    <id property="memberId" column="m_id"/>
+    <result property="memberPw" column="m_pw"/>
+    <result property="memberName" column="m_name"/>
+    <result property="memberEmail" column="m_email"/>
+  </resultMap>
+
+  <!-- Query -->
+  <select id="select" resultMap="MemberResultMap">
+    SELECT m_id, m_pw, m_name, m_email
+    FROM tb_member
+    WHERE m_id = #{memberId};
+  </select>
+
+  <select id="selectAll" resultMap="MemberResultMap">
+    SELECT m_id, m_pw, m_name, m_email
+    FROM tb_member;
+  </select>
+
+  <insert id="insert">
+    INSERT INTO tb_member(m_id, m_pw, m_name, m_email)
+    VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberEmail});
+  </insert>
+
+  <update id="update">
+    UPDATE tb_member
+    SET m_pw=#{member.memberPw},
+        m_name=#{member.memberName},
+        m_email=#{member.memberEmail}
+    WHERE m_id = #{memberId};
+  </update>
+
+  <delete id="delete">
+    DELETE
+    FROM tb_member
+    WHERE m_id = #{memberId};
+  </delete>
+
+</mapper>
