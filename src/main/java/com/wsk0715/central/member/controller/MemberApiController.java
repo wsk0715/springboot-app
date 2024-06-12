@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/member")
+@RequestMapping("/api/members")
 public class MemberApiController {
 	private final MemberService memberService;
 
@@ -24,7 +24,7 @@ public class MemberApiController {
 	}
 
 
-	@GetMapping("/")
+	@GetMapping
 	public Map<String, List<Member>> getAllMember() {
 		List<Member> result = memberService.selectAll();
 		Map<String, List<Member>> response = new HashMap<>(Map.of("result", result));
@@ -40,7 +40,7 @@ public class MemberApiController {
 		return response;
 	}
 
-	@PostMapping("/")
+	@PostMapping
 	public Map<String, Boolean> postMember(@RequestBody Member member) {
 		boolean result = memberService.insert(member);
 		Map<String, Boolean> response = new HashMap<>(Map.of("result", result));
