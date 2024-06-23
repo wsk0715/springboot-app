@@ -21,4 +21,14 @@
       m_id = #{loginId};
   </select>
 
+  <select id="checkIdDuplicated" resultType="int">
+    SELECT
+      count(1)
+    FROM
+      tb_member
+    WHERE
+      m_id = #{checkId}
+    LIMIT 1;
+  </select>
+
 </mapper>

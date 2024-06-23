@@ -1,5 +1,6 @@
 package com.wsk0715.central.auth.controller;
 
+import com.wsk0715.central.auth.domain.IdCheck;
 import com.wsk0715.central.auth.domain.Login;
 import com.wsk0715.central.auth.service.AuthService;
 import java.util.Map;
@@ -21,6 +22,13 @@ public class AuthApiController {
 	@PostMapping("/login")
 	public Map<String, String> postRequestLogin(@RequestBody Login login) {
 		Map<String, String> response = authService.requestLogin(login);
+
+		return response;
+	}
+
+	@PostMapping("/register/check")
+	public Map<String, Boolean> postRegisterIdCheck(@RequestBody IdCheck request) {
+		Map<String, Boolean> response = authService.checkIdDuplicated(request);
 
 		return response;
 	}

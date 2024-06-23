@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AuthMapper {
 	Login getMemberByLoginId(String loginId);
 
+	int checkIdDuplicated(String checkId);
+
 }

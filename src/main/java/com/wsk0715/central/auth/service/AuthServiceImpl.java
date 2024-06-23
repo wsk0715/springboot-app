@@ -1,5 +1,6 @@
 package com.wsk0715.central.auth.service;
 
+import com.wsk0715.central.auth.domain.IdCheck;
 import com.wsk0715.central.auth.domain.Login;
 import com.wsk0715.central.auth.mapper.AuthMapper;
 import com.wsk0715.central.utils.jwt.JwtUtil;
@@ -31,6 +32,20 @@ public class AuthServiceImpl implements AuthService {
 				result.replace("result", "SUCCESS");
 				result.put("token", JwtUtil.generateToken(loginId));
 			}
+		}
+		return result;
+	}
+
+	@Override
+	public Map<String, Boolean> checkIdDuplicated(IdCheck request) {
+		String checkId = request.getMemberId();
+		
+		Map<String, Boolean> result = new HashMap<>(
+				Map.of("result", false)
+		);
+
+		if (authMapper.checkIdDuplicated(checkId) > 0) {
+			result.replace("result", true);
 		}
 		return result;
 	}
