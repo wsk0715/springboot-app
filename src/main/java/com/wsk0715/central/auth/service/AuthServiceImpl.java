@@ -1,18 +1,18 @@
-package com.wsk0715.central.login.service;
+package com.wsk0715.central.auth.service;
 
-import com.wsk0715.central.login.domain.Login;
-import com.wsk0715.central.login.mapper.LoginMapper;
+import com.wsk0715.central.auth.domain.Login;
+import com.wsk0715.central.auth.mapper.AuthMapper;
 import com.wsk0715.central.utils.jwt.JwtUtil;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginServiceImpl implements LoginService {
-	private final LoginMapper loginMapper;
+public class AuthServiceImpl implements AuthService {
+	private final AuthMapper authMapper;
 
-	public LoginServiceImpl(LoginMapper loginMapper) {
-		this.loginMapper = loginMapper;
+	public AuthServiceImpl(AuthMapper authMapper) {
+		this.authMapper = authMapper;
 	}
 
 
@@ -24,7 +24,7 @@ public class LoginServiceImpl implements LoginService {
 		Map<String, String> result = new HashMap<>(
 				Map.of("result", "FAILED_ID")
 		);
-		Login member = loginMapper.getMemberByLoginId(loginId);
+		Login member = authMapper.getMemberByLoginId(loginId);
 		if (member != null) {
 			result.replace("result", "FAILED_PW");
 			if (loginPw.equals(member.getMemberPw())) {

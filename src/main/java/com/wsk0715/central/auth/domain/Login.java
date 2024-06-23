@@ -1,4 +1,4 @@
-package com.wsk0715.central.login.domain;
+package com.wsk0715.central.auth.domain;
 
 import lombok.Data;
 

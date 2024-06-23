@@ -2,19 +2,23 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wsk0715.central.login.mapper.LoginMapper">
+<mapper namespace="com.wsk0715.central.auth.mapper.AuthMapper">
 
   <!-- Result Mapping -->
   <resultMap id="LoginResultMap" type="Login">
-    <result property="memberId" column="m_id"/>
-    <result property="memberPw" column="m_pw"/>
+    <result property="memberId" column="m_id" />
+    <result property="memberPw" column="m_pw" />
   </resultMap>
 
   <!-- Query -->
   <select id="getMemberByLoginId" resultMap="LoginResultMap">
-    SELECT m_id, m_pw
-    FROM tb_member
-    WHERE m_id = #{loginId};
+    SELECT
+      m_id,
+      m_pw
+    FROM
+      tb_member
+    WHERE
+      m_id = #{loginId};
   </select>
 
 </mapper>

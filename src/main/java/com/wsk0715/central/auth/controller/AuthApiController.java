@@ -1,7 +1,7 @@
-package com.wsk0715.central.login.controller;
+package com.wsk0715.central.auth.controller;
 
-import com.wsk0715.central.login.domain.Login;
-import com.wsk0715.central.login.service.LoginService;
+import com.wsk0715.central.auth.domain.Login;
+import com.wsk0715.central.auth.service.AuthService;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class LoginApiController {
-	private final LoginService loginService;
+public class AuthApiController {
+	private final AuthService authService;
 
-	public LoginApiController(LoginService loginService) {
-		this.loginService = loginService;
+	public AuthApiController(AuthService authService) {
+		this.authService = authService;
 	}
 
 
 	@PostMapping("/login")
 	public Map<String, String> postRequestLogin(@RequestBody Login login) {
-		Map<String, String> response = loginService.requestLogin(login);
+		Map<String, String> response = authService.requestLogin(login);
 
 		return response;
 	}
